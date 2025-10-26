@@ -1,1 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Test Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5eb;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .dashboard {
+            display: none;
+        }
+        
+        .welcome-message {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #e8f4fc;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .tests-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f1f1;
+        }
+        
+        .test-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .test-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eaeaea;
+        }
+        
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .test-link {
+            display: inline-block;
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .test-link:hover {
+            background-color: #27ae60;
+        }
+        
+        .add-test-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .add-test-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-test-form input {
+            flex: 1;
+        }
+        
+        .add-btn {
+            background-color: #9b59b6;
+            width: auto;
+            padding: 12px 20px;
+        }
+        
+        .add-btn:hover {
+            background-color: #8e44ad;
+        }
+        
+        .logout-btn {
+            background-color: #e74c3c;
+            width: auto;
+            display: block;
+            margin-left: auto;
+            margin-top: 20px;
+        }
+        
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .admin-controls {
+            background-color: #fff3cd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .reset-btn {
+            background-color: #ffc107;
+            color: #212529;
+            width: auto;
+            padding: 10px 15px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .reset-btn:hover {
+            background-color: #e0a800;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #7f8c8d;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Student Test Portal</h1>
+            <p>Access all your tests in one place</p>
+        </div>
+        
+        <div class="content">
+            <!-- Login Form -->
+            <div id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                </div>
+                
+                <button id="loginBtn" class="btn">Login</button>
+                <div id="errorMessage" class="error-message">Invalid username or password!</div>
+            </div>
+            
+            <!-- Dashboard -->
+            <div id="dashboard" class="dashboard">
+                <div class="welcome-message">
+                    <h2>Welcome, <span id="studentName">Upasana Pradhan</span>!</h2>
+                    <p>You can access all your tests from this portal.</p>
+                </div>
+                
+                <div class="tests-section">
+                    <h2 class="section-title">Available Tests</h2>
+                    <div id="testList" class="test-list">
+                        <!-- Test cards will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="add-test-section">
+                    <h2 class="section-title">Add New Test</h2>
+                    <div class="add-test-form">
+                        <input type="text" id="newTestName" placeholder="Enter test name (e.g., Test 5)">
+                        <input type="text" id="newTestUrl" placeholder="GitHub repository folder URL">
+                        <button id="addTestBtn" class="btn add-btn">Add Test</button>
+                    </div>
+                </div>
+                
+                <div class="admin-controls">
+                    <h3>Admin Controls</h3>
+                    <p>Reset to default test list (Use this if you've updated the default tests in code)</p>
+                    <button id="resetTestsBtn" class="btn reset-btn">Reset to Default Tests</button>
+                </div>
+                
+                <button id="logoutBtn" class="btn logout-btn">Logout</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Student Portal &copy; 2023 | All tests are hosted on GitHub</p>
+        </div>
+    </div>
 
+    <script>
+        // Fixed credentials
+        const FIXED_USERNAME = "UpasanaPradhan";
+        const FIXED_PASSWORD = "ILoveMyINDIA";
+        
+        // DEFAULT TESTS - Update this array when you add new tests to your GitHub
+        const DEFAULT_TESTS = [
+            { name: "Test 1", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-1" },
+            { name: "Test 2", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-2" },
+            { name: "Test 3", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-3" },
+            { name: "Test 4", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-4" }
+            // ADD NEW TESTS HERE when you create them in your GitHub repository
+            // Example: { name: "Test 5", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-5" }
+        ];
+        
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const dashboard = document.getElementById('dashboard');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const studentName = document.getElementById('studentName');
+        const testList = document.getElementById('testList');
+        const newTestName = document.getElementById('newTestName');
+        const newTestUrl = document.getElementById('newTestUrl');
+        const addTestBtn = document.getElementById('addTestBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const resetTestsBtn = document.getElementById('resetTestsBtn');
+        
+        // Current tests (will be loaded from localStorage or use defaults)
+        let tests = [];
+        
+        // Load tests from localStorage or use defaults
+        function loadTests() {
+            const savedTests = localStorage.getItem('studentPortalTests');
+            if (savedTests) {
+                tests = JSON.parse(savedTests);
+            } else {
+                // First time - use default tests
+                tests = [...DEFAULT_TESTS];
+                saveTests();
+            }
+            renderTests();
+        }
+        
+        // Save tests to localStorage
+        function saveTests() {
+            localStorage.setItem('studentPortalTests', JSON.stringify(tests));
+        }
+        
+        // Reset to default tests
+        function resetToDefaultTests() {
+            tests = [...DEFAULT_TESTS];
+            saveTests();
+            renderTests();
+            alert('Tests reset to default list!');
+        }
+        
+        // Render tests to the dashboard
+        function renderTests() {
+            testList.innerHTML = '';
+            tests.forEach(test => {
+                const testCard = document.createElement('div');
+                testCard.className = 'test-card';
+                testCard.innerHTML = `
+                    <h3>${test.name}</h3>
+                    <a href="${test.url}" target="_blank" class="test-link">Take Test</a>
+                `;
+                testList.appendChild(testCard);
+            });
+        }
+        
+        // Login functionality
+        loginBtn.addEventListener('click', function() {
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+            
+            if (username === FIXED_USERNAME && password === FIXED_PASSWORD) {
+                // Successful login
+                loginForm.style.display = 'none';
+                dashboard.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Load tests
+                loadTests();
+            } else {
+                // Failed login
+                errorMessage.style.display = 'block';
+                passwordInput.value = '';
+            }
+        });
+        
+        // Allow login with Enter key
+        passwordInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+        
+        // Add new test functionality
+        addTestBtn.addEventListener('click', function() {
+            const testName = newTestName.value.trim();
+            const testUrl = newTestUrl.value.trim();
+            
+            if (testName && testUrl) {
+                // Add new test
+                tests.push({ name: testName, url: testUrl });
+                
+                // Save to localStorage
+                saveTests();
+                
+                // Re-render tests
+                renderTests();
+                
+                // Clear inputs
+                newTestName.value = '';
+                newTestUrl.value = '';
+                
+                alert('Test added successfully!');
+            } else {
+                alert('Please enter both test name and URL');
+            }
+        });
+        
+        // Reset tests functionality
+        resetTestsBtn.addEventListener('click', resetToDefaultTests);
+        
+        // Logout functionality
+        logoutBtn.addEventListener('click', function() {
+            // Clear inputs
+            usernameInput.value = '';
+            passwordInput.value = '';
+            
+            // Show login form, hide dashboard
+            loginForm.style.display = 'flex';
+            dashboard.style.display = 'none';
+        });
+        
+        // Initialize the page
+        loadTests();
+    </script>
+</body>
+</html>
