@@ -4,7 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>RRB Section Control — Full-Length Test (100 Qs)</title>
-<!-- Your CSS stays exactly the same -->
 <style>
   :root{
     --brand:#2563eb;
@@ -22,7 +21,309 @@
     line-height:1.5;
   }
   
-  /* ... ALL YOUR EXISTING CSS STAYS THE SAME ... */
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px;
+  }
+  
+  .card{
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06);
+    padding:24px;
+    margin-bottom:20px;
+  }
+  
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    padding-bottom:16px;
+    border-bottom:1px solid #e5e7eb;
+  }
+  
+  h1{
+    font-size:24px;
+    margin:0;
+    color:#1f2937;
+  }
+  
+  h2{
+    font-size:20px;
+    margin:0 0 8px;
+    color:#1f2937;
+  }
+  
+  .exam-info{
+    background:#f0f9ff;
+    border-left:4px solid var(--brand);
+    padding:16px 20px;
+    border-radius:8px;
+    margin-bottom:24px;
+  }
+  
+  .exam-info ul{
+    margin:12px 0;
+    padding-left:20px;
+  }
+  
+  .exam-info li{
+    margin-bottom:8px;
+  }
+  
+  .intro{
+    margin-top:24px;
+  }
+  
+  label{
+    font-weight:600;
+    display:block;
+    margin-bottom:8px;
+    color:#374151;
+  }
+  
+  #studentName{
+    width:100%;
+    padding:12px;
+    border:2px solid #e5e7eb;
+    border-radius:6px;
+    font-size:16px;
+    transition:border-color 0.2s, box-shadow 0.2s;
+    box-sizing:border-box;
+  }
+  
+  #studentName:focus{
+    outline:none;
+    border-color:var(--brand);
+    box-shadow:0 0 0 3px rgba(37,99,235,0.1);
+  }
+  
+  .controls{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  
+  button{
+    padding:12px 20px;
+    border:none;
+    border-radius:6px;
+    font-weight:600;
+    cursor:pointer;
+    font-size:15px;
+    transition:all 0.2s;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  
+  button:disabled{
+    opacity:0.6;
+    cursor:not-allowed;
+    transform:none !important;
+  }
+  
+  button:active:not(:disabled){
+    transform:translateY(1px);
+  }
+  
+  .success{
+    background:var(--success);
+    color:white;
+  }
+  
+  .success:hover:not(:disabled){
+    background:#15803d;
+  }
+  
+  .secondary{
+    background:#f3f4f6;
+    color:#374151;
+    border:1px solid #d1d5db;
+  }
+  
+  .secondary:hover:not(:disabled){
+    background:#e5e7eb;
+  }
+  
+  .warning{
+    background:var(--warning);
+    color:white;
+  }
+  
+  .warning:hover:not(:disabled){
+    background:#b45309;
+  }
+  
+  .progress-container{
+    margin:20px 0;
+  }
+  
+  .progress-bar{
+    height:8px;
+    background:#e5e7eb;
+    border-radius:4px;
+    overflow:hidden;
+  }
+  
+  .progress-fill{
+    height:100%;
+    background:var(--brand);
+    width:0%;
+    transition:width 0.3s;
+  }
+  
+  .progress-text{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    color:var(--muted);
+    margin-top:8px;
+  }
+  
+  .legend{
+    display:flex;
+    gap:16px;
+    margin:20px 0;
+    flex-wrap:wrap;
+  }
+  
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:14px;
+  }
+  
+  .legend-color{
+    width:16px;
+    height:16px;
+    border-radius:4px;
+  }
+  
+  .legend-current{
+    background:var(--brand);
+  }
+  
+  .legend-answered{
+    background:var(--success);
+  }
+  
+  .legend-marked{
+    background:var(--warning);
+  }
+  
+  .legend-unvisited{
+    background:#e5e7eb;
+  }
+  
+  .qbox{
+    margin:24px 0;
+  }
+  
+  .qtext{
+    font-size:18px;
+    margin-bottom:16px;
+    font-weight:500;
+  }
+  
+  .opt{
+    display:block;
+    padding:12px 16px;
+    margin-bottom:8px;
+    border:1px solid #e5e7eb;
+    border-radius:6px;
+    cursor:pointer;
+    transition:background 0.2s;
+  }
+  
+  .opt:hover{
+    background:#f9fafb;
+  }
+  
+  .opt input{
+    margin-right:10px;
+  }
+  
+  .nav-numbers{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:20px 0;
+  }
+  
+  .nav-numbers button{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    background:#f3f4f6;
+    color:#374151;
+    border:1px solid #d1d5db;
+  }
+  
+  .nav-numbers button.current{
+    background:var(--brand);
+    color:white;
+    border-color:var(--brand);
+  }
+  
+  .nav-numbers button.answered{
+    background:var(--success);
+    color:white;
+    border-color:var(--success);
+  }
+  
+  .nav-numbers button.marked{
+    background:var(--warning);
+    color:white;
+    border-color:var(--warning);
+  }
+  
+  .nav-numbers button.answered.marked{
+    background:linear-gradient(135deg, var(--success) 50%, var(--warning) 50%);
+  }
+  
+  .footer{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid #e5e7eb;
+    font-size:14px;
+    color:var(--muted);
+    text-align:center;
+  }
+  
+  .result{
+    margin:20px 0;
+  }
+  
+  .summary{
+    margin-top:24px;
+  }
+  
+  .result-item{
+    margin-bottom:24px;
+  }
+  
+  .correct{
+    color:var(--success);
+    font-weight:600;
+  }
+  
+  .incorrect{
+    color:var(--danger);
+    font-weight:600;
+  }
+  
+  .unattempted{
+    color:var(--muted);
+    font-weight:600;
+  }
   
   @media (max-width:768px){
     .wrap{
@@ -72,7 +373,7 @@
   <div class="card" id="startCard">
     <header>
       <div>
-        <h1>RRB Section Control — Full-Length Test</h1>
+        <h1>RRB CBT — Full-Length</h1>
         <div style="color:var(--muted);margin-top:8px;font-size:15px">
           100 Questions | Time: 80 minutes | Each question = 1 mark | –⅓ negative for wrong answer
         </div>
@@ -84,19 +385,19 @@
     </header>
 
     <div class="exam-info">
-      <p><strong>Important Instructions:</strong></p>
-      <ul style="margin:8px 0;padding-left:20px">
-        <li>Enter your name and press <strong>Start Exam</strong></li>
-        <li>The exam will go full-screen and the 80-minute timer will begin</li>
-        <li>Do not exit full-screen or switch tabs — violation will auto-submit</li>
-        <li>Navigate using numbered buttons or Previous/Next buttons</li>
-        <li>Mark questions for review using the "Mark" button</li>
+      <p><strong style="color: var(--danger);">⚠️ Important Instructions:</strong></p>
+      <ul>
+        <li>👤 Enter your name and press <strong>Start Exam</strong></li>
+        <li>⏱️ The exam will go full-screen and the 80-minute timer will begin</li>
+        <li>🚫 Do not exit full-screen or switch tabs — violation will auto-submit</li>
+        <li>🔢 Navigate using numbered buttons or Previous/Next buttons</li>
+        <li>📌 Mark questions for review using the "Mark" button</li>
       </ul>
     </div>
 
     <div class="intro">
-      <p><label style="font-weight:600;display:block;margin-bottom:8px">Student Name<span style="color: red;"><strong>*</strong></span> </label>
-      <input type="text" id="studentName" placeholder="Enter your full name" required /></p>
+      <p><label>Student Name<span style="color: red;"><strong>*</strong></span> </label>
+      <input type="text" id="studentName" placeholder="Enter your full name (max 50 characters)" maxlength="50" required /></p>
 
       <div class="controls">
         <button id="startBtn" class="success">🎯 Start Exam</button>
@@ -176,7 +477,6 @@
 </div>
 </form>
 
-<!-- FIXED: Load questions.js FIRST, then your main script -->
 <script src="questions.js"></script>
 <script>
 // STATE
@@ -301,14 +601,39 @@ function startExam() {
     document.getElementById('studentName').focus();
     return;
   }
+  
+  // Add loading state
+  const startBtn = document.getElementById('startBtn');
+  const originalText = startBtn.textContent;
+  startBtn.textContent = '🔄 Starting...';
+  startBtn.disabled = true;
+  
   studentName = nameInput;
-  openFullscreen();
-  startCore();
+  
+  // Small delay to show loading state
+  setTimeout(() => {
+    openFullscreen();
+    startCore();
+    startBtn.textContent = originalText;
+    startBtn.disabled = false;
+  }, 500);
 }
 
 function startDemo() {
-  studentName = document.getElementById('studentName').value.trim() || 'Demo Student';
-  startCore(true);
+  const nameInput = document.getElementById('studentName').value.trim();
+  studentName = nameInput || 'Demo Student';
+  
+  // Add loading state for demo button too
+  const demoBtn = document.getElementById('demoBtn');
+  const originalText = demoBtn.textContent;
+  demoBtn.textContent = '🔄 Starting...';
+  demoBtn.disabled = true;
+  
+  setTimeout(() => {
+    startCore(true);
+    demoBtn.textContent = originalText;
+    demoBtn.disabled = false;
+  }, 500);
 }
 
 function startCore(demo = false) {
