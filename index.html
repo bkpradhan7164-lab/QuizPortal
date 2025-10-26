@@ -174,10 +174,16 @@
         
         .add-test-form {
             display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-row {
+            display: flex;
             gap: 10px;
         }
         
-        .add-test-form input {
+        .form-row input {
             flex: 1;
         }
         
@@ -239,6 +245,14 @@
             font-size: 14px;
             border-top: 1px solid #eee;
         }
+        
+        .password-protected {
+            background-color: #ffeaa7;
+            border-left: 4px solid #fdcb6e;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -281,16 +295,30 @@
                 
                 <div class="add-test-section">
                     <h2 class="section-title">Add New Test</h2>
+                    <div class="password-protected">
+                        <strong>🔒 Admin Access Required</strong> - Enter admin password to add tests
+                    </div>
                     <div class="add-test-form">
-                        <input type="text" id="newTestName" placeholder="Enter test name (e.g., Test 5)">
-                        <input type="text" id="newTestUrl" placeholder="GitHub repository folder URL">
+                        <div class="form-group">
+                            <label for="adminPassword">Admin Password</label>
+                            <input type="password" id="adminPassword" placeholder="Enter admin password">
+                        </div>
+                        <div class="form-row">
+                            <input type="text" id="newTestName" placeholder="Enter test name (e.g., Test 5)">
+                            <input type="text" id="newTestUrl" placeholder="GitHub repository folder URL">
+                        </div>
                         <button id="addTestBtn" class="btn add-btn">Add Test</button>
                     </div>
+                    <div id="adminError" class="error-message" style="display: none;">Invalid admin password!</div>
                 </div>
                 
                 <div class="admin-controls">
                     <h3>Admin Controls</h3>
-                    <p>Reset to default test list (Use this if you've updated the default tests in code)</p>
+                    <p>Reset to default test list</p>
+                    <div class="form-group">
+                        <label for="resetPassword">Admin Password</label>
+                        <input type="password" id="resetPassword" placeholder="Enter admin password">
+                    </div>
                     <button id="resetTestsBtn" class="btn reset-btn">Reset to Default Tests</button>
                 </div>
                 
@@ -307,6 +335,7 @@
         // Fixed credentials
         const FIXED_USERNAME = "UpasanaPradhan";
         const FIXED_PASSWORD = "ILoveMyINDIA";
+        const ADMIN_PASSWORD = "ItsAPerfectWorld"; // Change this to your preferred admin password
         
         // DEFAULT TESTS - Update this array when you add new tests to your GitHub
         const DEFAULT_TESTS = [
@@ -314,8 +343,6 @@
             { name: "Test 2", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-2" },
             { name: "Test 3", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-3" },
             { name: "Test 4", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-4" }
-            // ADD NEW TESTS HERE when you create them in your GitHub repository
-            // Example: { name: "Test 5", url: "https://github.com/yourusername/QuizPortal/tree/main/Test-5" }
         ];
         
         // DOM Elements
@@ -332,6 +359,9 @@
         const addTestBtn = document.getElementById('addTestBtn');
         const logoutBtn = document.getElementById('logoutBtn');
         const resetTestsBtn = document.getElementById('resetTestsBtn');
+        const adminPassword = document.getElementById('adminPassword');
+        const resetPassword = document.getElementById('resetPassword');
+        const adminError = document.getElementById('adminError');
         
         // Current tests (will be loaded from localStorage or use defaults)
         let tests = [];
@@ -356,10 +386,18 @@
         
         // Reset to default tests
         function resetToDefaultTests() {
-            tests = [...DEFAULT_TESTS];
-            saveTests();
-            renderTests();
-            alert('Tests reset to default list!');
+            const password = resetPassword.value;
+            if (password === ADMIN_PASSWORD) {
+                tests = [...DEFAULT_TESTS];
+                saveTests();
+                renderTests();
+                resetPassword.value = '';
+                adminError.style.display = 'none';
+                alert('Tests reset to default list!');
+            } else {
+                adminError.style.display = 'block';
+                adminError.textContent = 'Invalid admin password!';
+            }
         }
         
         // Render tests to the dashboard
@@ -407,6 +445,13 @@
         addTestBtn.addEventListener('click', function() {
             const testName = newTestName.value.trim();
             const testUrl = newTestUrl.value.trim();
+            const password = adminPassword.value;
+            
+            if (password !== ADMIN_PASSWORD) {
+                adminError.style.display = 'block';
+                adminError.textContent = 'Invalid admin password!';
+                return;
+            }
             
             if (testName && testUrl) {
                 // Add new test
@@ -421,6 +466,8 @@
                 // Clear inputs
                 newTestName.value = '';
                 newTestUrl.value = '';
+                adminPassword.value = '';
+                adminError.style.display = 'none';
                 
                 alert('Test added successfully!');
             } else {
@@ -436,6 +483,9 @@
             // Clear inputs
             usernameInput.value = '';
             passwordInput.value = '';
+            adminPassword.value = '';
+            resetPassword.value = '';
+            adminError.style.display = 'none';
             
             // Show login form, hide dashboard
             loginForm.style.display = 'flex';
