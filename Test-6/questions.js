@@ -1,3 +1,5 @@
+const quiz = [
+
 {cat:"General Awareness", q:"How many medals did India win in total at the World Para Athletics Grand Prix 2025?", opts:["120","150","134","180"], ans:"134", marks:1},
 {cat:"Mathematics", q:"The marked price of a desk is ₹7,725, which is 25% above the cost price. It is sold at a discount of 4% on the marked price. Find the profit percentage.", opts:["21%","19%","20%","22%"], ans:"20%", marks:1},
 {cat:"Mathematics", q:"From a taxi stand, two cabs start at a speed of 74 km/hr at an interval of 28 minutes, both cabs travelling in the same direction. A man coming in the opposite direction towards the taxi stand meets the cabs at an interval of 10 minutes. Find the speed (in km/hr) of the man.", opts:["128.8","133.2","143.1","125.5"], ans:"133.2", marks:1},
@@ -97,4 +99,6 @@
 {cat:"Reasoning", q:"Each of P, Q, R, S, T, U and V has an exam on a different day of a week starting from Monday and ending on Sunday of the same week. P has the exam on Thursday. U has the exam on one of the days after R and on one of the days before T. V has the exam on one of the days after S but on one of the days before Q. S has the exam on one of the days after P. How many people have the exam before V?", opts:["5","2","3","4"], ans:"5", marks:1},
 {cat:"General Awareness", q:"Which of the following acts authorised the Governor General to override his council in matters affecting the interest of British empire in India?", opts:["Pitts India Act 1784","Charter Act of 1793","Regulating Act 1773","Charter Act of 1813"], ans:"Charter Act of 1793", marks:1},
 {cat:"Reasoning", q:"In this question, a group of number/symbol is coded using letter codes as per the codes given below and the conditions which follow. The correct combination of codes (following only the conditions that apply) is your answer. 2 # @ 7 9", opts:["D P Z L ©","O P L Z C","O P Z L C","O P Z L ©"], ans:"O P Z L ©", marks:1},
-{cat:"Mathematics", q:"At what rate of interest (rounded off to two decimal places) per year will a sum of money double itself in 12 years on simple interest?", opts:["6.33%","8.33%","16.67%","10.33%"], ans:"8.33%", marks:1}
+{cat:"Mathematics", q:"At what rate of interest (rounded off to two decimal places) per year will a sum of money double itself in 12 years on simple interest?", opts:["6.33%","8.33%","16.67%","10.33%"], ans:"8.33%", marks:1},
+
+  ];
