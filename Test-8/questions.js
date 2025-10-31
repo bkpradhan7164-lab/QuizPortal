@@ -1,4 +1,4 @@
-[
+const quiz = [
   { "cat": "Maths", "q": "The sides (in cm) of a right triangle are (x – 13), (x – 26) and x. Its area (in cm²) is:", "opts": ["999", "1014", "1010", "1012"], "ans": "1014", "marks": 1 },
   { "cat": "Maths", "q": "If tan θ = 7/8, then evaluate ((1 + sin θ)(1 - sin θ))/((1 + cos θ)(1 - cos θ)(cot θ)).", "opts": ["8/7", "7/8", "49/64", "64/49"], "ans": "8/7", "marks": 1 },
   { "cat": "Maths", "q": "If 24 is subtracted from three times an unknown number, the difference is 258. What is the unknown number?", "opts": ["94", "70", "78", "82"], "ans": "94", "marks": 1 },
@@ -98,6 +98,6 @@
   { "cat": "Reasoning", "q": "What will come in place of the question mark (?) in the following equation, if '+' and '-' are interchanged and '×' and '÷' are interchanged? 66 ÷ 8 - 231 × 11 + 14 = ?", "opts": ["545", "525", "515", "535"], "ans": "525", "marks": 1 },
   { "cat": "Current Affairs", "q": "According to luxury resort developer Fine Acers 2025, the market for branded residences and resorts in India is expected to reach ₹8,610 crore (US$ 1 billion) by:", "opts": ["2026", "2029", "2028", "2027"], "ans": "2029", "marks": 1 },
   { "cat": "Current Affairs", "q": "Which of the following is NOT one of the ten indicators used in calculating the Multidimensional Poverty Index (MPI)?", "opts": ["Years of schooling", "Access to electricity", "Internet connectivity", "Nutrition"], "ans": "Internet connectivity", "marks": 1 },
-  { "cat": "Maths", "q": "The marked price of a bookshelf is ₹3,100, which is 25% above the cost price. It is sold at a discount of 12% on the marked price. Find the profit percentage.", "opts": ["11%", "8%", "9%", "10%"], "ans": "10%", "marks": 1 }
+  { "cat": "Maths", "q": "The marked price of a bookshelf is ₹3,100, which is 25% above the cost price. It is sold at a discount of 12% on the marked price. Find the profit percentage.", "opts": ["11%", "8%", "9%", "10%"], "ans": "10%", "marks": 1 },
 
 ];
