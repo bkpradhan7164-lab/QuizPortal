@@ -1,4 +1,4 @@
-const questions = [
+const quiz = [
 {cat: "Maths", q: "The sides (in cm) of a right triangle are (x – 13), (x – 26) and x. Its area (in cm²) is:", opts: ["999", "1014", "1010", "1012"], ans: "1014", marks: 1},
 {cat: "Maths", q: "If tan θ = 7/8, then evaluate ((1 + sin θ)(1 - sin θ))/((1 + cos θ)(1 - cos θ)(cot θ)).", opts: ["8/7", "7/8", "49/64", "64/49"], ans: "8/7", marks: 1},
 {cat: "Maths", q: "If 24 is subtracted from three times an unknown number, the difference is 258. What is the unknown number?", opts: ["94", "70", "78", "82"], ans: "94", marks: 1},
