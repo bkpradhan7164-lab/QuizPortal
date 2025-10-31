@@ -100,4 +100,4 @@
   { "cat": "Current Affairs", "q": "Which of the following is NOT one of the ten indicators used in calculating the Multidimensional Poverty Index (MPI)?", "opts": ["Years of schooling", "Access to electricity", "Internet connectivity", "Nutrition"], "ans": "Internet connectivity", "marks": 1 },
   { "cat": "Maths", "q": "The marked price of a bookshelf is ₹3,100, which is 25% above the cost price. It is sold at a discount of 12% on the marked price. Find the profit percentage.", "opts": ["11%", "8%", "9%", "10%"], "ans": "10%", "marks": 1 },
 
-]
+];
