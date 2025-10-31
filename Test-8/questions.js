@@ -98,6 +98,6 @@ const quiz = [
   { "cat": "Reasoning", "q": "What will come in place of the question mark (?) in the following equation, if '+' and '-' are interchanged and '×' and '÷' are interchanged? 66 ÷ 8 - 231 × 11 + 14 = ?", "opts": ["545", "525", "515", "535"], "ans": "525", "marks": 1 },
   { "cat": "Current Affairs", "q": "According to luxury resort developer Fine Acers 2025, the market for branded residences and resorts in India is expected to reach ₹8,610 crore (US$ 1 billion) by:", "opts": ["2026", "2029", "2028", "2027"], "ans": "2029", "marks": 1 },
   { "cat": "Current Affairs", "q": "Which of the following is NOT one of the ten indicators used in calculating the Multidimensional Poverty Index (MPI)?", "opts": ["Years of schooling", "Access to electricity", "Internet connectivity", "Nutrition"], "ans": "Internet connectivity", "marks": 1 },
-  { "cat": "Maths", "q": "The marked price of a bookshelf is ₹3,100, which is 25% above the cost price. It is sold at a discount of 12% on the marked price. Find the profit percentage.", "opts": ["11%", "8%", "9%", "10%"], "ans": "10%", "marks": 1 },
+  { "cat": "Maths", "q": "The marked price of a bookshelf is ₹3,100, which is 25% above the cost price. It is sold at a discount of 12% on the marked price. Find the profit percentage.", "opts": ["11%", "8%", "9%", "10%"], "ans": "10%", "marks": 1 }
 
 ];
