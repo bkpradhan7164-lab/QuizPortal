@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Portal - Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #3498db;
+      --primary-dark: #2980b9;
+      --secondary: #2c3e50;
+      --danger: #e74c3c;
+      --light: #f8f9fa;
+      --border: #e1e5eb;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .login-container {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      overflow: hidden;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: pulse 10s infinite linear;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .header p {
+      opacity: 0.9;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .login-content {
+      padding: 30px;
+    }
+
+    /* Adds consistent spacing between all form elements */
+    .login-content form > *:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 8px;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6c757d;
+    }
+
+    .input-with-icon input {
+      padding-left: 45px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #6c757d;
+    }
+
+    .btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .error-message {
+      color: var(--danger);
+      text-align: center;
+      font-weight: 600;
+      display: none;
+      padding: 10px;
+      border-radius: 6px;
+      background-color: rgba(231, 76, 60, 0.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="login-container">
+    <section class="header">
+      <h1><i class="fas fa-graduation-cap" aria-hidden="true"></i> Student Portal</h1>
+      <p>Login to access your dashboard</p>
+    </section>
+
+    <section class="login-content">
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <div class="input-with-icon">
+          <i class="fas fa-user"></i>
+          <input type="text" id="username" placeholder="Enter your username" required />
+        </div>
+
+        <label for="password">Password</label>
+        <div class="input-with-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder="Enter your password" required />
+          <i class="fas fa-eye toggle-password" id="togglePassword" aria-label="Show password"></i>
+        </div>
+
+        <button type="submit" class="btn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+
+        <div id="errorMessage" class="error-message">
+          <i class="fas fa-exclamation-circle"></i> Invalid username or password!
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+  const errorMessage = document.getElementById("errorMessage");
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+  const usernameInput = document.getElementById("username");
+  const loginForm = document.getElementById("loginForm");
+
+  // Toggle password visibility
+  togglePassword.addEventListener("click", () => {
+    const type = passwordInput.type === "password" ? "text" : "password";
+    passwordInput.type = type;
+    togglePassword.classList.toggle("fa-eye-slash");
+  });
+
+  // Fetch user credentials from GitHub JSON (returns the users array)
+  async function fetchCredentials() {
+    try {
+      const res = await fetch("https://bkpradhan7164-lab.github.io/QuizPortal/users.json", { cache: "no-store" });
+      if (!res.ok) throw new Error("Unable to load credentials.");
+      const data = await res.json();
+      // Expecting { "users": [ ... ] }
+      return Array.isArray(data.users) ? data.users : [];
+    } catch (err) {
+      console.error("fetchCredentials:", err);
+      errorMessage.textContent = "Error loading credentials. Try again later.";
+      errorMessage.style.display = "block";
+      return null; // signal error
+    }
+  }
+
+  // Show an error (centralized)
+  function showError(text) {
+    errorMessage.textContent = text;
+    errorMessage.style.display = "block";
+  }
+
+  // Hide error
+  function hideError() {
+    errorMessage.style.display = "none";
+  }
+
+  // Handle login form submit
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    hideError();
+
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!username || !password) {
+      showError("Please fill in both fields!");
+      return;
+    }
+
+    const users = await fetchCredentials();
+    if (users === null) return; // fetch error already handled
+
+    // Case-insensitive username match (keeps stored casing if matched)
+    const user = users.find(u => String(u.username).toLowerCase() === username.toLowerCase());
+
+    if (user && user.password === password) {
+      // Successful login
+      sessionStorage.setItem("currentUser", JSON.stringify({
+        username: user.username,
+        name: user.name,
+        role: user.role || "student"
+      }));
+
+      // Auto logout after 30 minutes
+      setTimeout(() => sessionStorage.removeItem("currentUser"), 30 * 60 * 1000);
+
+      // Optional: small visual feedback before redirect
+      const btn = loginForm.querySelector('button[type="submit"]');
+      const origText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+
+      // redirect
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 500);
+    } else {
+      // Failed login
+      showError("Invalid username or password!");
+      passwordInput.value = "";
+      usernameInput.focus();
+    }
+  });
+
+  // Keyboard shortcuts
+  passwordInput.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") loginForm.requestSubmit();
+  });
+  usernameInput.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") passwordInput.focus();
+  });
+
+  // Autofocus username on load
+  document.addEventListener("DOMContentLoaded", () => {
+    usernameInput.focus();
+  });
+</script>
+
+</body>
+</html>
