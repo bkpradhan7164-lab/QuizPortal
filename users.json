@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "username": "UpasanaPradhan",
+      "password": "ILoveMyINDIA",
+      "name": "Upasana",
+      "role": "student"
+    },
+    {
+      "username": "Biren Kumar Pradhan",
+      "password": "Biren@1729",
+      "name": "Biren",
+      "role": "student"
+    },
+    {
+      "username": "admin",
+      "password": "ItsAPerfectWorld",
+      "name": "Administrator",
+      "role": "admin"
+    }
+  ]
+}
