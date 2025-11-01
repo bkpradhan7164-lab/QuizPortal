@@ -1,4 +1,4 @@
-constant quiz = [
+const quiz = [
 
   {cat: "Current Affairs", q: "Who won the Sahitya Akademi Award 2024 for Dogri literature for the book 'Ik Hor Ashwthama'?", opts: ["Padma Sachdev", "Chaman Arora", "Mohan Singh", "Ved Rahi"], ans: "Ved Rahi", marks: 1},
   {cat: "Current Affairs", q: "In September 2024, the Uniform Code of Pharmaceutical Marketing Practices (UCPMP) 2024 extended its guidelines to which of the following sectors?", opts: ["Medical device manufacturers", "Ayurvedic medicines", "Veterinary pharmaceuticals", "Online health consultations"], ans: "Medical device manufacturers", marks: 1},
